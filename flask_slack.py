@@ -2,7 +2,7 @@
     flaskext.slack
     ~~~~~~~~~~~~~~~
 
-    Slack exntension for flask.
+    Slack exntension for Flask.
 
     :copyright: (c) 2014 by VeryCB.
     :license: BSD, see LICENSE for more details.
