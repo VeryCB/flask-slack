@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*.egg-info
+__pycache__
+bin
+build
+dist
+eggs
+.DS_Store
+cover/
+.tox
+*.bak
