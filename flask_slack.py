@@ -2,7 +2,7 @@
     flask_slack
     ~~~~~~~~~~~~~~~
 
-    Slack exntension for Flask.
+    Slack extension for Flask.
 
     :copyright: (c) 2014 by VeryCB.
     :license: BSD, see LICENSE for more details.
