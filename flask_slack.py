@@ -1,5 +1,5 @@
 """
-    flaskext.slack
+    flask_slack
     ~~~~~~~~~~~~~~~
 
     Slack exntension for Flask.
