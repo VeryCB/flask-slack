@@ -59,8 +59,8 @@ class Slack(object):
 
         try:
             self.validate(command, token, team_id, method)
-        except RuntimeError as e:
-            return self.response(e.message)
+        except SlackError as e:
+            return self.response(e.msg)
 
         func, _, _, kwargs = self._commands[(team_id, command)]
         kwargs.update(data.to_dict())
@@ -71,17 +71,23 @@ class Slack(object):
 
     def validate(self, command, token, team_id, method):
         if (team_id, command) not in self._commands:
-            raise RuntimeError('Command {0} is not found in team {1}'.format(
-                               command, team_id))
+            raise SlackError('Command {0} is not found in team {1}'.format(
+                             command, team_id))
 
         func, _token, methods, kwargs = self._commands[(team_id, command)]
 
         if method not in methods:
-            raise RuntimeError('{} request is not allowed'.format(method))
+            raise SlackError('{} request is not allowed'.format(method))
 
         if token != _token:
-            raise RuntimeError('Your token {} is invalid'.format(token))
+            raise SlackError('Your token {} is invalid'.format(token))
 
     def response(self, text):
         from flask import Response
         return Response(text, content_type='text/plain; charset=utf-8')
+
+
+class SlackError(Exception):
+
+    def __init__(self, msg):
+        self.msg = msg
