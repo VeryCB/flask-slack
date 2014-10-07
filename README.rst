@@ -1,3 +1,5 @@
+|Build Status| |PyPI Version| |PyPI Downloads|
+
 Flask-Slack
 ============
 
@@ -32,3 +34,14 @@ Usage
     def your_method(**kwargs):
         text = kwargs.get('text')
         return slack.response(text)
+
+
+.. |Build Status| image:: https://travis-ci.org/VeryCB/flask-slack.svg?branch=master
+   :target: https://travis-ci.org/VeryCB/flask-slack
+   :alt: Build Status
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/Flask-Slack.svg
+   :target: https://pypi.python.org/pypi/Flask-Slack
+   :alt: PyPI Version
+.. |PyPI Downloads| image:: https://img.shields.io/pypi/dm/Flask-Slack.svg
+   :target: https://pypi.python.org/pypi/Flask-Slack
+   :alt: Downloads
