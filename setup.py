@@ -27,6 +27,9 @@ setup(
     py_modules=['flask_slack'],
     zip_safe=False,
     platforms='any',
+    install_requires=[
+        'Flask',
+    ],
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
