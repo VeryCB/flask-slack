@@ -31,6 +31,10 @@ setup(
         'Flask',
         'six',
     ],
+    tests_require=[
+        'pytest',
+        'pytest-cov'
+    ],
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',

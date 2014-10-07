@@ -11,3 +11,4 @@ cover/
 .tox
 *.bak
 .python-version
+.coverage
