@@ -4,5 +4,8 @@ python:
   - "3.3"
   - "3.4"
 install:
-  - "pip install ."
+  - "pip install . --use-mirrors"
+  - "pip install pytest-cov coveralls --use-mirrors"
 script: py.test
+after_success:
+  coveralls
