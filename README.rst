@@ -1,4 +1,4 @@
-|Build Status| |PyPI Version| |PyPI Downloads|
+|Build Status| |Coverage Status| |PyPI Version| |PyPI Downloads|
 
 Flask-Slack
 ============
@@ -45,3 +45,6 @@ Usage
 .. |PyPI Downloads| image:: https://img.shields.io/pypi/dm/Flask-Slack.svg
    :target: https://pypi.python.org/pypi/Flask-Slack
    :alt: Downloads
+.. |Coverage Status| image:: https://img.shields.io/coveralls/VeryCB/flask-slack.svg
+   :target: https://coveralls.io/r/VeryCB/flask-slack
+   :alt: Coverage Status
