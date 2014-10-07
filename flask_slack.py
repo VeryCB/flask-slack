@@ -8,6 +8,9 @@
     :license: BSD, see LICENSE for more details.
 """
 
+from six import string_types
+
+
 __all__ = ('Slack',)
 __version__ = '0.1.1'
 __author__ = 'VeryCB <imcaibin@gmail.com>'
@@ -51,7 +54,7 @@ class Slack(object):
         team_id = data.get('team_id')
         command = data.get('command')
 
-        if isinstance(command, basestring):
+        if isinstance(command, string_types):
             command = command.strip().lstrip('/')
 
         try:

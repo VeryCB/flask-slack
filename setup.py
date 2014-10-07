@@ -29,6 +29,7 @@ setup(
     platforms='any',
     install_requires=[
         'Flask',
+        'six',
     ],
     classifiers=[
         'Programming Language :: Python',
