@@ -10,3 +10,4 @@ eggs
 cover/
 .tox
 *.bak
+.python-version
