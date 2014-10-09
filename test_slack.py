@@ -50,3 +50,15 @@ def test_registering_commands(app):
 
     assert get_res.status_code == 200
     assert get_res.data == b'GET request is not allowed'
+
+    post_data = {
+        'command': command,
+        'token': token,
+        'team_id': team_id,
+        'text': text
+    }
+
+    post_res = app.client.post('/', data=post_data)
+
+    assert post_res.status_code == 200
+    assert post_res.data == b'You are my littttle apple...'
