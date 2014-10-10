@@ -1,4 +1,4 @@
-from pytest import fixture
+from pytest import fixture, raises
 from flask import Flask
 
 from flask_slack import Slack
@@ -62,3 +62,15 @@ def test_registering_commands(app):
 
     assert post_res.status_code == 200
     assert post_res.data == b'You are my littttle apple...'
+
+
+def test_commands_without_registering_team_id(app):
+    command = 'sing'
+    token = 'mytoken'
+    methods = ['POST']
+
+    with raises(RuntimeError):
+        @app.slack.command(command, token, methods=methods)
+        def _sing_a_song(**kwargs):
+            lyrics = 'You are my littttle apple...'
+            return app.slack.response(lyrics)
