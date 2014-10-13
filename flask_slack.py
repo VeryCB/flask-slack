@@ -26,6 +26,7 @@ class Slack(object):
             self.init_app(app)
 
     def init_app(self, app=None):
+        """Initialize application configuration"""
         config = getattr(app, 'config', app)
 
         self.team_id = config.get('TEAM_ID')
