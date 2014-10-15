@@ -32,6 +32,18 @@ class Slack(object):
         self.team_id = config.get('TEAM_ID')
 
     def command(self, command, token, team_id=None, methods=['GET'], **kwargs):
+        """A decorator used to register a command.
+
+        :param command: the command to register
+        :param token: your command token provided by slack
+        :param team_id: optional. your team_id provided by slack.
+                        You can also specify the "TEAM_ID" in app
+                        configuration file for one-team project
+        :param methods: optional. HTTP methods which are accepted to
+                        execute the command
+        :param kwargs: optional. the optional arguments which will be passed
+                       to your register method
+        """
         if team_id is None:
             team_id = self.team_id
         if team_id is None:
