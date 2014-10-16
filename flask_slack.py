@@ -33,6 +33,13 @@ class Slack(object):
 
     def command(self, command, token, team_id=None, methods=['GET'], **kwargs):
         """A decorator used to register a command.
+        Example::
+
+            @slack.command('your_command', token='your_token',
+                           team_id='your_team_id', methods=['POST'])
+            def your_method(**kwargs):
+                text = kwargs.get('text')
+                return slack.response(text)
 
         :param command: the command to register
         :param token: your command token provided by slack
@@ -55,6 +62,12 @@ class Slack(object):
         return deco
 
     def dispatch(self):
+        """Dispatch http request to registerd commands.
+        Example::
+
+            slack = Slack(app)
+            app.add_url_rule('/', view_func=slack.dispatch)
+        """
         from flask import request
 
         method = request.method
@@ -83,6 +96,13 @@ class Slack(object):
     dispatch.methods = ['GET', 'POST']
 
     def validate(self, command, token, team_id, method):
+        """Validate request queries with registerd commands
+
+        :param command: command parameter from request
+        :param token: token parameter from request
+        :param team_id: team_id parameter from request
+        :param method: the request method
+        """
         if (team_id, command) not in self._commands:
             raise SlackError('Command {0} is not found in team {1}'.format(
                              command, team_id))
@@ -96,6 +116,10 @@ class Slack(object):
             raise SlackError('Your token {} is invalid'.format(token))
 
     def response(self, text):
+        """Return a response with 'text/plain; charset=utf-8' Content-Type
+
+        :param text: the text returned to the client
+        """
         from flask import Response
         return Response(text, content_type='text/plain; charset=utf-8')
 
