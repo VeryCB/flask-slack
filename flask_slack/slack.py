@@ -1,19 +1,6 @@
-"""
-    flask_slack
-    ~~~~~~~~~~~~~~~
-
-    Slack extension for Flask.
-
-    :copyright: (c) 2014 by VeryCB.
-    :license: BSD, see LICENSE for more details.
-"""
-
 from six import string_types
 
-
-__all__ = ('Slack',)
-__version__ = '0.1.2'
-__author__ = 'VeryCB <imcaibin@gmail.com>'
+from .exceptions import SlackError
 
 
 class Slack(object):
@@ -122,9 +109,3 @@ class Slack(object):
         """
         from flask import Response
         return Response(text, content_type='text/plain; charset=utf-8')
-
-
-class SlackError(Exception):
-
-    def __init__(self, msg):
-        self.msg = msg
