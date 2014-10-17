@@ -1,5 +1,4 @@
 import os
-import re
 
 from setuptools import setup
 
@@ -10,14 +9,9 @@ def fread(fname):
         return f.read()
 
 
-content = fread('flask_slack/__init__.py')
-m = re.findall(r'__version__\s*=\s*\'(.*)\'', content)
-version = m[0]
-
-
 setup(
     name='Flask-Slack',
-    version=version,
+    version='0.1.2',
     url='https://github.com/verycb/flask-slack',
     author='VeryCB',
     author_email='imcaibin@gmail.com',
