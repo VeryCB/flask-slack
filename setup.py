@@ -10,7 +10,7 @@ def fread(fname):
         return f.read()
 
 
-content = fread('flask_slack.py')
+content = fread('flask_slack/__init__.py')
 m = re.findall(r'__version__\s*=\s*\'(.*)\'', content)
 version = m[0]
 
