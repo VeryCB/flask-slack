@@ -13,3 +13,5 @@ cover/
 .python-version
 .coverage
 .cache
+*.sw[po]
+docs/_build
