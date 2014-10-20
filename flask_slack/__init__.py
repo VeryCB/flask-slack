@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for more details.
 """
 from .slack import Slack
+from .exceptions import SlackError
 
 
 __all__ = ['Slack', 'SlackError']
