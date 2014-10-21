@@ -36,6 +36,11 @@ Usage
         return slack.response(text)
 
 
+Documentation
+-------------
+The full documentation is available at `readthedocs.org <http://flask-slack.readthedocs.org>`_
+
+
 .. |Build Status| image:: https://travis-ci.org/VeryCB/flask-slack.svg?branch=master
    :target: https://travis-ci.org/VeryCB/flask-slack
    :alt: Build Status

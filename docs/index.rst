@@ -29,6 +29,18 @@ All registed methods are dispatched through ``slack.dispatch`` method. You can c
     app.add_url_rule('/', view_func=slack.dispatch)
 
 
+Installation
+------------
+
+You can install Flask-Slack with pip::
+
+    $ pip install flask-slack
+
+Or, with setuptools easy_install in case you didn't have pip::
+
+    $ easy_install flask-slack
+
+
 API Reference
 -------------
 
