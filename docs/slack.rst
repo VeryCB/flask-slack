@@ -1,15 +1,10 @@
-.. _api:
+.. _slack:
 
 =====
-slack
+Slack
 =====
 
 .. module:: flask_slack
 
 .. autoclass:: Slack
    :members:
-
-.. autoclass:: SlackError
-   :members:
-   :private-members:
-   :special-members:
