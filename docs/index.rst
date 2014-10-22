@@ -23,7 +23,7 @@ You can register your Slack slash command to a method as follows.
         text = kwargs.get('text')
         return slack.response(text)
 
-All registed methods are dispatched through ``slack.dispatch`` method. You can connect it to an endpoint which your wish Slack robots to request with.
+All registered methods are dispatched through ``slack.dispatch`` method. You can connect it to an endpoint which you wish Slack robots to request with.
 ::
 
     app.add_url_rule('/', view_func=slack.dispatch)
