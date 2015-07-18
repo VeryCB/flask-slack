@@ -65,7 +65,7 @@ class Slack(object):
 
         token = data.get('token')
         team_id = data.get('team_id')
-        command = data.get('command')
+        command = data.get('command') or data.get('trigger_word')
 
         if isinstance(command, string_types):
             command = command.strip().lstrip('/')
