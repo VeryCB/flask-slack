@@ -102,10 +102,27 @@ class Slack(object):
         if token != _token:
             raise SlackError('Your token {} is invalid'.format(token))
 
-    def response(self, text):
-        """Return a response with 'text/plain; charset=utf-8' Content-Type
+    def response(self, text, response_type='ephemeral', attachments=None):
+        """Return a response with json format
 
         :param text: the text returned to the client
+        :param response_type: optional. When `in_channel` is assigned,
+                              both the response message and the initial
+                              message typed by the user will be shared
+                              in the channel.
+                              When `ephemeral` is assigned, the response
+                              message will be visible only to the user
+                              that issued the command.
+        :param attachments: optional. A list of additional messages
+                            for rich response.
         """
-        from flask import Response
-        return Response(text, content_type='text/plain; charset=utf-8')
+        from flask import jsonify
+        if attachments is None:
+            attachments = []
+
+        data = {
+            'response_type': response_type,
+            'text': text,
+            'attachments': attachments,
+        }
+        return jsonify(**data)

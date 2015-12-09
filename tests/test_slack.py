@@ -1,3 +1,5 @@
+import json
+
 from pytest import fixture, raises
 from flask import Flask
 from six import b
@@ -15,6 +17,10 @@ class App(object):
         self.client = self.app.test_client()
 
 
+def _jsonify_response(res):
+    return json.loads(res.data)
+
+
 @fixture(scope='module')
 def app():
     return App()
@@ -23,7 +29,8 @@ def app():
 def test_request_without_registering_commands(app):
     res = app.client.get('/')
     assert res.status_code == 200
-    assert res.data == b('Command None is not found in team None')
+    assert _jsonify_response(res)['text'] == b(
+        'Command None is not found in team None')
 
 
 def test_registering_commands(app):
@@ -50,7 +57,8 @@ def test_registering_commands(app):
     get_res = app.client.get(get_url)
 
     assert get_res.status_code == 200
-    assert get_res.data == b('GET request is not allowed')
+    assert _jsonify_response(get_res)['text'] == b(
+        'GET request is not allowed')
 
     post_data = {
         'command': command,
@@ -62,7 +70,8 @@ def test_registering_commands(app):
     post_res = app.client.post('/', data=post_data)
 
     assert post_res.status_code == 200
-    assert post_res.data == b('You are my littttle apple...')
+    assert _jsonify_response(post_res)['text'] == b(
+        'You are my littttle apple...')
 
 
 def test_commands_without_registering_team_id(app):
@@ -101,4 +110,6 @@ def test_invalid_token(app):
     post_res = app.client.post('/', data=post_data)
 
     assert post_res.status_code == 200
-    assert post_res.data == b('Your token {} is invalid'.format(invalid_token))
+    assert post_res.content_type == 'application/json'
+    assert _jsonify_response(post_res)['text'] == b(
+        'Your token {} is invalid'.format(invalid_token))

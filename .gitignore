@@ -15,3 +15,4 @@ cover/
 .cache
 *.sw[po]
 docs/_build
+*.egg
