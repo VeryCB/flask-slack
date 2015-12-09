@@ -13,5 +13,5 @@ from .utils import link_string
 
 
 __all__ = ['Slack', 'SlackError', 'link_string']
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 __author__ = 'VeryCB <imcaibin@gmail.com>'
