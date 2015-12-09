@@ -18,7 +18,7 @@ class App(object):
 
 
 def _jsonify_response(res):
-    return json.loads(res.data)
+    return json.loads(res.data.decode('utf-8'))
 
 
 @fixture(scope='module')
@@ -29,7 +29,7 @@ def app():
 def test_request_without_registering_commands(app):
     res = app.client.get('/')
     assert res.status_code == 200
-    assert _jsonify_response(res)['text'] == b(
+    assert _jsonify_response(res)['text'] == (
         'Command None is not found in team None')
 
 
@@ -57,7 +57,7 @@ def test_registering_commands(app):
     get_res = app.client.get(get_url)
 
     assert get_res.status_code == 200
-    assert _jsonify_response(get_res)['text'] == b(
+    assert _jsonify_response(get_res)['text'] == (
         'GET request is not allowed')
 
     post_data = {
@@ -70,7 +70,7 @@ def test_registering_commands(app):
     post_res = app.client.post('/', data=post_data)
 
     assert post_res.status_code == 200
-    assert _jsonify_response(post_res)['text'] == b(
+    assert _jsonify_response(post_res)['text'] == (
         'You are my littttle apple...')
 
 
@@ -110,6 +110,30 @@ def test_invalid_token(app):
     post_res = app.client.post('/', data=post_data)
 
     assert post_res.status_code == 200
-    assert post_res.content_type == 'application/json'
-    assert _jsonify_response(post_res)['text'] == b(
+    assert _jsonify_response(post_res)['text'] == (
         'Your token {} is invalid'.format(invalid_token))
+
+
+def test_response_type(app):
+    command = 'sing'
+    token = 'mytoken'
+    team_id = 'MYTEAMID'
+    methods = ['POST']
+    text = 'little apple'
+
+    @app.slack.command(command, token, team_id, methods)
+    def _sing_a_song(**kwargs):
+        lyrics = 'You are my littttle apple...'
+        return app.slack.response(lyrics, response_type='in_channel')
+
+    post_data = {
+        'command': command,
+        'token': token,
+        'team_id': team_id,
+        'text': text
+    }
+
+    post_res = app.client.post('/', data=post_data)
+
+    assert post_res.status_code == 200
+    assert _jsonify_response(post_res)['response_type'] == 'in_channel'
