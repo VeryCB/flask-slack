@@ -1,6 +1,6 @@
 import os
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def fread(fname):
@@ -18,7 +18,7 @@ setup(
     description='Slack extension for Flask.',
     long_description=fread('README.rst'),
     license='BSD',
-    py_modules=['flask_slack'],
+    packages=find_packages(exclude=['tests', 'docs']),
     zip_safe=False,
     platforms='any',
     install_requires=[
