@@ -11,7 +11,7 @@ def fread(fname):
 
 setup(
     name='Flask-Slack',
-    version='0.1.3',
+    version='0.1.4',
     url='https://github.com/verycb/flask-slack',
     author='VeryCB',
     author_email='imcaibin@gmail.com',
